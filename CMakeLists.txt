@@ -7,14 +7,14 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 add_subdirectory(3rd_party/rapidjson-master)
 
 set(headers
-    ${CMAKE_CURRENT_SOURCE_DIR}/vulkan_extern.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/vulkan_function.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Vulkan_API/vulkan_extern.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Vulkan_API/vulkan_function.h
 )
 
 set(src
-${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/vulkan_extern.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/vulkan_function.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Vulkan_API/vulkan_extern.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Vulkan_API/vulkan_function.cpp
 )
 
 find_package(SDL2 REQUIRED)
@@ -31,7 +31,15 @@ if(${VULKAN_FOUND})
     message("   *Include " ${VULKAN_INCLUDE_DIR})
     message("   *Libraries " ${VULKAN_LIBRARY})
 else()
+    message(FATAL_ERROR "-- Vulkan NOT Found")
+endif()
 
+if(${SDL2_FOUND})
+    message("-- SDL2 Found")
+    message("   *Include " ${SDL2_INCLUDE_DIRS})
+    message("   *Libraries " ${SDL2_LIBRARY})
+else()
+    message(FATAL_ERROR "-- SDL2 Not Found")
 endif()
 
 add_executable(${PROJECT_NAME} ${src} ${headers})
