@@ -447,3 +447,11 @@ build/bin/sortkeys
 build/bin/tutorial
 .gitignore
 .gitignore
+build/.cmake/api/v1/reply/codemodel-v2-f7fa4c3c14cb1fe3c446.json
+build/.cmake/api/v1/reply/index-2021-06-23T12-23-46-0293.json
+build/.cmake/api/v1/reply/target-SDL_Vulkan-Debug-e068eaf69205e08b86b6.json
+build/CMakeFiles/SDL_Vulkan.dir/src/main.cpp.o
+build/CMakeFiles/SDL_Vulkan.dir/src/Vulkan_API/vulkan_extern.cpp.o
+build/CMakeFiles/SDL_Vulkan.dir/src/Vulkan_API/vulkan_function.cpp.o
+.vscode/c_cpp_properties.json
+build/.cmake/api/v1/reply/index-2021-06-25T14-48-32-0023.json
