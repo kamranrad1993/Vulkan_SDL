@@ -4,6 +4,7 @@
 #include <vulkan/vulkan.h>
 #include <vulkan/vulkan.hpp>
 #include <vulkan/vulkan_core.h>
+#include <SDL2/SDL.h>
 
 #include <iostream>
 #include <vector>
@@ -34,7 +35,7 @@ class Vulkan
         void Create_Debug();
 
         VkSurfaceKHR surface;
-        void Create_Surface();
+        void Create_Surface(SDL_Window *window);
 
         VkPhysicalDevice physical_devices;
         void Select_PhysicalDevice();
@@ -92,6 +93,6 @@ class Vulkan
 	void createFences();
 };
 
-void init_vulkan_extern(Vulkan *vulkan);
+void init_vulkan_extern(Vulkan *vulkan, SDL_Window *window);
 
 #endif

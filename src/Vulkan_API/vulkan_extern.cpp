@@ -1,13 +1,14 @@
 #include "vulkan_extern.h"
+#include <SDL2/SDL.h>
 
-void init_vulkan_extern(Vulkan *vulkan)
+void init_vulkan_extern(Vulkan *vulkan, SDL_Window *window)
 {
     ////////////////////////////////////////////////////
     ///////             [Core]
     //////////////////////////////////////////
     vulkan->Create_Instance();
     vulkan->Create_Debug();
-    vulkan->Create_Surface();
+    vulkan->Create_Surface(window);
     vulkan->Select_PhysicalDevice();
     vulkan->Select_QueueFamily();
     vulkan->Create_Device();
@@ -105,7 +106,7 @@ void Vulkan::Create_Debug()
     SDL2_vkCreateDebugReportCallbackEXT(instance, &debugCallbackCreateInfo, 0, &debugCallback);
 }
 
-void Vulkan::Create_Surface()
+void Vulkan::Create_Surface(SDL_Window *window)
 {
     SDL_Vulkan_CreateSurface(window, instance, &surface);
 }
@@ -126,11 +127,14 @@ void Vulkan::Select_PhysicalDevice()
     {
         vkGetPhysicalDeviceFeatures(device, &features);
         vkGetPhysicalDeviceProperties(device, &props);
-        cout << "\t" << device << "\t" << props.deviceName 
-        << "\t" << "type : " << props.deviceType
-        << "\t" << "api : "<< props.apiVersion
-        << "\t" << "vendorID : "<< props.vendorID
-        << endl;
+        cout << "\t" << device << "\t" << props.deviceName
+             << "\t"
+             << "type : " << props.deviceType
+             << "\t"
+             << "api : " << props.apiVersion
+             << "\t"
+             << "vendorID : " << props.vendorID
+             << endl;
     }
 
     physical_devices = physicalDevices[2];

@@ -8,6 +8,7 @@ using namespace std;
 SDL_Window *window;
 char *window_name = "example SDL2 Vulkan application";
 
+#include <vulkan/vulkan_core.h>
 #include "Vulkan_API/vulkan_extern.h"
 #include "Vulkan_API/vulkan_function.h"
 Vulkan *vulkan;
@@ -19,7 +20,7 @@ int main(int argc, char *argv[])
                               SDL_WINDOW_VULKAN | SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
 
     vulkan = new Vulkan();
-    init_vulkan_extern(vulkan);
+    init_vulkan_extern(vulkan, window);
 
     SDL_Event event;
     bool running = true;
@@ -33,6 +34,7 @@ int main(int argc, char *argv[])
             }
         }
 
+
         AcquireNextImage();
 
         ResetCommandBuffer();
@@ -42,7 +44,7 @@ int main(int argc, char *argv[])
             VkClearDepthStencilValue clear_depth_stencil = {1.0f, 0};
             BeginRenderPass(clear_color, clear_depth_stencil);
             {
-                
+
             }
             EndRenderPass();
         }
